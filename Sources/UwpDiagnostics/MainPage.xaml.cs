@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.Web.Http;
 using UwpDiagnostics.Collectors;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -39,6 +40,13 @@ namespace UwpDiagnostics
             }
 
             output.Text = xOutput.ToString();
+        }
+
+        private async void SendToServer_Click(object sender, RoutedEventArgs e)
+        {
+            var xClient = new HttpClient();
+            await xClient.PutAsync(new Uri("http://laptop-matthijs:60864/Home/Put"), new HttpStringContent(output.Text));
+
         }
     }
 }

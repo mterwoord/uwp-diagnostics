@@ -22,6 +22,7 @@ namespace UwpDiagnostics.Collectors
                         output.WriteLine($"Id: '{xItem.Id}'");
                         output.WriteLine($"IsDefault: {xItem.IsDefault}");
                         output.WriteLine($"IsEnabled: {xItem.IsEnabled}");
+                        output.WriteLine($"Kind: {xItem.Kind}");
                         if (xItem.EnclosureLocation != null)
                         {
                             using (output.StartSection("Enclosure information"))
@@ -31,7 +32,15 @@ namespace UwpDiagnostics.Collectors
                                 output.WriteLine($"Panel: {xItem.EnclosureLocation.Panel}");
                             }
                         }
-                        output.WriteLine($"Id: '{xItem.Id}'");
+                        if (xItem.Pairing != null)
+                        {
+                            using (output.StartSection("Pairing"))
+                            {
+                                output.WriteLine($"CanPair: {xItem.Pairing.CanPair}");
+                                output.WriteLine($"IsPaired: {xItem.Pairing.IsPaired}");
+                                output.WriteLine($"ProtectionLevel: {xItem.Pairing.ProtectionLevel}");
+                            }
+                        }
                     }
                 }
             }
