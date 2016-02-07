@@ -31,12 +31,12 @@ namespace UwpDiagnostics
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            output.Text = "Processing...";
             var xOutput = new StringOutputWriter();
 
             {
                 await DeviceInformationCollector.Execute(xOutput);
             }
-
 
             output.Text = xOutput.ToString();
         }
